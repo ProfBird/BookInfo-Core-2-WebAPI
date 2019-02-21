@@ -19,9 +19,8 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\BookInfo\BookInfo.csproj" />
+    <ProjectReference Include="..\BookInfo\BookInfo-WebAPi.csproj" />
   </ItemGroup>
 
 </Project>
