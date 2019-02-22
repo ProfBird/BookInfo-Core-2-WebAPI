@@ -47,7 +47,6 @@ namespace BookInfo.Controllers
             {
                 return NotFound();  //  TODO: Use a better error method
             }
-
         }
 
         // TODO: Fix author management
@@ -68,7 +67,6 @@ namespace BookInfo.Controllers
             {
                 return NotFound();  //  TODO: Use a better error method
             }
-
         }
 
         [HttpPatch]
@@ -94,10 +92,25 @@ namespace BookInfo.Controllers
                 default:
                     return NotFound();  //  TODO: Use a better error method
             }
-
             bookRepo.Edit(book);
             return Ok(book);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBook(int id)
+        {
+            Book book = bookRepo.GetBookById(id);
+            if (book != null)
+            {
+                bookRepo.Delete(id);
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
 
     }
 }
