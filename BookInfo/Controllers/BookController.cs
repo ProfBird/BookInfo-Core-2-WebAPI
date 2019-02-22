@@ -48,7 +48,6 @@ namespace BookInfo.Controllers
             }
         }
 
-
         [HttpPost]
         public IActionResult AddBook(string title, string date, string author, string birthdate)
         {

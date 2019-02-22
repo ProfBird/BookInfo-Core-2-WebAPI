@@ -15,7 +15,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:5000/api/Book",
+					"raw": "http://localhost:5000/api/Book/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -23,7 +23,33 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"Book"
+						"Book",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBook",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/Book/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Book",
+						"3"
 					]
 				}
 			},
