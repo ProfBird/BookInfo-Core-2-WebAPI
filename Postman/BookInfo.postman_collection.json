@@ -105,17 +105,11 @@
 							"value": "6/8/1870",
 							"description": "Author's birthdate",
 							"type": "text"
-						},
-						{
-							"key": "bookId",
-							"value": "4",
-							"description": "Replace book with ID 4",
-							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:5000/api/Book",
+					"raw": "http://localhost:5000/api/Book/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -123,7 +117,30 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"Book"
+						"Book",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBook",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/api/Book/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Book",
+						"4"
 					]
 				}
 			},
@@ -151,16 +168,11 @@
 							"key": "value",
 							"value": "David Copperfield",
 							"type": "text"
-						},
-						{
-							"key": "bookId",
-							"value": "4",
-							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:5000/api/Book",
+					"raw": "http://localhost:5000/api/Book/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -168,7 +180,8 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"Book"
+						"Book",
+						"5"
 					]
 				}
 			},
