@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookInfo.Repositories;
 using BookInfo.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace BookInfo.Controllers
 {
@@ -32,6 +33,21 @@ namespace BookInfo.Controllers
                 return Ok(books);
             }
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetBook(int id)
+        { 
+            var book = bookRepo.GetBookById(id);
+            if (book == null)
+            { 
+                return NotFound();
+            }
+            else
+            {
+                return Ok(book);
+            }
+        }
+
 
         [HttpPost]
         public IActionResult AddBook(string title, string date, string author, string birthdate)
