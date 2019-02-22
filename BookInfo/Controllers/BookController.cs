@@ -52,11 +52,11 @@ namespace BookInfo.Controllers
         // TODO: Fix author management
         // The author object from the original book will
         // still be pointing to this object
-        [HttpPut]
-        public IActionResult Replace(int bookId, string title, string date, string author, string birthdate)
+        [HttpPut("{id}")]
+        public IActionResult Replace(int id, string title, string date, string author, string birthdate)
         {
             Book book = new Book { Title = title, Date = DateTime.Parse(date) };
-            book.BookID = bookId;
+            book.BookID = id;
             if (author != null)
             {
                 book.Authors.Add(new Author { Name = author, Birthday = DateTime.Parse(birthdate) });
