@@ -69,12 +69,12 @@ namespace BookInfo.Controllers
             }
         }
 
-        [HttpPatch]
-        public IActionResult UpdateBook(int bookId, string op, string path, string value)
+        [HttpPatch("{id}")]
+        public IActionResult UpdateBook(int id, string op, string path, string value)
         {
             // TODO: Add support for more ops: remove, copy, move, test
 
-            Book book = bookRepo.GetBookById(bookId);
+            Book book = bookRepo.GetBookById(id);
             switch(path)
             {
                 case "title":
