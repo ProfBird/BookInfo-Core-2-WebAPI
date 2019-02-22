@@ -18,7 +18,7 @@ namespace BookInfo.Controllers
             this.bookRepo = bookRepo;
         }
 
-        /* Action Methods that get info from the database */
+        /* Action Methods */
 
        [HttpGet]
         public IActionResult GetBooks()
@@ -32,28 +32,6 @@ namespace BookInfo.Controllers
                 return Ok(books);
             }
         }
-
-        /*  // TODO: Provide views for these actions
-        public ViewResult AuthorsOfBook(Book book)
-        {
-            return View(bookRepo.GetAuthorsByBook(book));
-        }
-
-        public ViewResult BooksByAuthor(Author author)
-        {
-            return View(bookRepo.GetBooksByAuthor(author));
-        }
-
-        public ViewResult BookByTitle(string title)
-        {
-            return View(bookRepo.GetBookByTitle(title));
-        }
-        */
-        
-        /* Action methods that modify the database */
-
-
-
 
         [HttpPost]
         public IActionResult AddBook(string title, string date, string author, string birthdate)
@@ -72,6 +50,9 @@ namespace BookInfo.Controllers
 
         }
 
+        // TODO: Fix author management
+        // The author object from the original book will
+        // still be pointing to this object
         [HttpPut]
         public IActionResult Replace(int bookId, string title, string date, string author, string birthdate)
         {
@@ -116,23 +97,7 @@ namespace BookInfo.Controllers
 
             bookRepo.Edit(book);
             return Ok(book);
-
-
         }
 
-        /*
-        [HttpPost]
-        public RedirectToActionResult Edit(Book book)
-        {
-            bookRepo.Edit(book);
-            return RedirectToAction("Index");                
-        }
-
-        public RedirectToActionResult Delete(int id)
-        {
-            bookRepo.Delete(id);
-            return RedirectToAction("Index");
-        }
-        */
     }
 }

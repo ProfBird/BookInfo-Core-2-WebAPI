@@ -18,7 +18,7 @@ namespace BookInfo.Tests
             booksFromRepo = repository.GetAllBooks();
             controller = new BookController(repository);
         }
-
+        /* TODO: Need to revise this one for the web api 
         [Fact]
         // Test BookController getting a list of authors
         public void DoesGetBooks()
@@ -37,6 +37,8 @@ namespace BookInfo.Tests
                     books[i].Authors);
             }
         }
+        */
+
         /*
          * Currently not implemented
          * 

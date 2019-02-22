@@ -4,7 +4,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Views\Author\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" />
@@ -15,5 +14,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Claims\Index.cshtml" />
+    <Content Remove="Views\_ViewImports.cshtml" />
+    <Content Remove="Views\Admin\CreateAccount.cshtml" />
+    <Content Remove="Views\Admin\CreateRole.cshtml" />
+    <Content Remove="Views\Admin\EditRole.cshtml" />
+    <Content Remove="Views\Admin\Index.cshtml" />
+    <Content Remove="Views\Admin\ShowAccounts.cshtml" />
+    <Content Remove="Views\Admin\ShowRoles.cshtml" />
+    <Content Remove="Views\Author\AuthorEntry.cshtml" />
+    <Content Remove="Views\Author\Index.cshtml" />
+    <Content Remove="Views\Book\Add.cshtml" />
+    <Content Remove="Views\Book\Edit.cshtml" />
+    <Content Remove="Views\Book\Index.cshtml" />
+    <Content Remove="Views\Home\Index.cshtml" />
+    <Content Remove="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\AccountController.cs" />
+    <Compile Remove="Controllers\AdminController.cs" />
   </ItemGroup>
 </Project>

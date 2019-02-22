@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5dfa5c93-15f8-438d-8d4a-cc1909adcb10",
+		"_postman_id": "c4c529da-8010-05f8-d887-f93f6e629e40",
 		"name": "BookInfo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,13 +15,14 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:5000/Book",
+					"raw": "http://localhost:5000/api/Book",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
+						"api",
 						"Book"
 					]
 				}
@@ -38,36 +39,37 @@
 					"formdata": [
 						{
 							"key": "title",
-							"value": "Tale of Two Cities",
+							"value": "Tom Sawyer",
 							"type": "text"
 						},
 						{
 							"key": "date",
-							"value": "1/1/1859",
+							"value": "1/1/1876",
 							"description": "Publication date",
 							"type": "text"
 						},
 						{
 							"key": "author",
-							"value": "Charles Dickens",
+							"value": "Mark Twain",
 							"type": "text"
 						},
 						{
 							"key": "birthdate",
-							"value": "6/8/1870",
+							"value": "11/30/1835",
 							"description": "Author's birthdate",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:5000/Book",
+					"raw": "http://localhost:5000/api/Book",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
+						"api",
 						"Book"
 					]
 				}
@@ -107,19 +109,20 @@
 						{
 							"key": "bookId",
 							"value": "4",
-							"description": "Replace Tale of Two Cities",
+							"description": "Replace book with ID 4",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:5000/Book",
+					"raw": "http://localhost:5000/api/Book",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
+						"api",
 						"Book"
 					]
 				}
