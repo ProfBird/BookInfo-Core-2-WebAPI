@@ -8,7 +8,7 @@ namespace BookInfo.Controllers
 {
     // This class will be instantiated by the MVC framework or by a unit test
 
-    [Route("api/[controller]")]
+    [Route("Api/[controller]")]
     public class BookController : Controller
     {
         private IBookRepository bookRepo;
@@ -110,7 +110,6 @@ namespace BookInfo.Controllers
                 return NotFound();
             }
         }
-
 
     }
 }
