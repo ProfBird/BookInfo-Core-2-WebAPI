@@ -34,6 +34,7 @@ namespace BookInfo
                 .UseStartup<Startup>()
                 .UseDefaultServiceProvider(options =>
                     options.ValidateScopes = false)
+                .UseUrls("http://localhost:5000/")
                 .Build();
     }
 }

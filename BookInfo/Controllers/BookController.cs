@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 namespace BookInfo.Controllers
 {
     // This class will be instantiated by the MVC framework or by a unit test
+
+    [Route("api/[controller]")]
     public class BookController : Controller
     {
         private IBookRepository bookRepo;
@@ -18,8 +20,8 @@ namespace BookInfo.Controllers
 
         /* Action Methods that get info from the database */
 
-       
-        public IActionResult Index()
+       [HttpGet]
+        public IActionResult GetBooks()
         {
             var books = bookRepo.GetAllBooks();
             if (books.Count == 0) {
@@ -51,14 +53,10 @@ namespace BookInfo.Controllers
         /* Action methods that modify the database */
 
 
-        [HttpGet]
-        public ViewResult Add()
-        {
-            return View();
-        }
+
 
         [HttpPost]
-        public IActionResult Add(string title, string date, string author, string birthdate)
+        public IActionResult AddBook(string title, string date, string author, string birthdate)
         {
             Book book = new Book { Title = title, Date = DateTime.Parse(date) };
             if (author != null)
@@ -93,37 +91,36 @@ namespace BookInfo.Controllers
         }
 
         [HttpPatch]
-        public IActionResult Edit(int bookId, string title, string date, string author, string birthdate)
+        public IActionResult UpdateBook(int bookId, string op, string path, string value)
         {
+            // TODO: Add support for more ops: remove, copy, move, test
+
             Book book = bookRepo.GetBookById(bookId);
-            if (title != "")
-                book.Title = title;
-            /*
-            if (date != "")
-              //   book.Date = new DateTime(date);
-            if (author != "")
-               // book.Authors[0] = author; // TODO: Specify the author to change
-            if (birthdate != "")
-            //    book.Authors[0].Birthday = birthdate;
-            */
-            if (author != null)
+            switch(path)
             {
-                bookRepo.Edit(book);
-                return Ok(book);
+                case "title":
+                book.Title = value;
+                    break;
+                case "date":
+                    book.Date = Convert.ToDateTime(value);
+                    break;
+                case "author":
+                    book.Authors[0].Name = value;   // TODO: manage author collection
+                    break;
+                case "birthdate":
+                    book.Authors[0].Birthday = Convert.ToDateTime(value);
+                    break;
+                default:
+                    return NotFound();  //  TODO: Use a better error method
             }
-            else
-            {
-                return NotFound();  //  TODO: Use a better error method
-            }
+
+            bookRepo.Edit(book);
+            return Ok(book);
+
 
         }
 
-        [HttpGet]
-        public ViewResult Edit (int id)
-        {
-            return View(bookRepo.GetBookById(id));
-        }
-
+        /*
         [HttpPost]
         public RedirectToActionResult Edit(Book book)
         {
@@ -136,5 +133,6 @@ namespace BookInfo.Controllers
             bookRepo.Delete(id);
             return RedirectToAction("Index");
         }
+        */
     }
 }
