@@ -60,7 +60,7 @@ namespace BookInfo.Controllers
             }
             else
             {
-                return NotFound();  //  TODO: Use a better error method
+                return BadRequest();
             }
         }
 
@@ -80,7 +80,7 @@ namespace BookInfo.Controllers
             }
             else
             {
-                return NotFound();  //  TODO: Use a better error method
+                return BadRequest();
             }
         }
 
@@ -105,7 +105,7 @@ namespace BookInfo.Controllers
                     book.Authors[0].Birthday = Convert.ToDateTime(value);
                     break;
                 default:
-                    return NotFound();  //  TODO: Use a better error method
+                    return BadRequest(); 
             }
             bookRepo.Edit(book);
             return Ok(book);
