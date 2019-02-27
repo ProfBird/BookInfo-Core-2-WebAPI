@@ -138,16 +138,21 @@ function fillForm() {
 
 // Send new data for an existing book to the database
 function updateBook() {
-    var data = getFormData();
+    var patchCommands = {};
+    var form = document.getElementById('bookForm');
+    patchCommands.value = form[2].value; // title
+    patchCommands.op = "replace";
+    patchCommands.path = "title";
 
     // create an HTTP PATCH request
     var xhr = new XMLHttpRequest();
-    xhr.open("PATCH", BOOK_URL + "/" + data.bookID, true);
+    var bookId = form[1].value;
+    xhr.open("PATCH", BOOK_URL + "/" + bookId, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onerror = errorHandler;
 
     // serialize the data to a string so it can be sent
-    var dataString = JSON.stringify(data);
+    var dataString = JSON.stringify(patchCommands);
     xhr.send(dataString);
     clearSelectList();
 }
