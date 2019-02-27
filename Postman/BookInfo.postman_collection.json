@@ -59,33 +59,17 @@
 			"name": "AddBook",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "title",
-							"value": "Tom Sawyer",
-							"type": "text"
-						},
-						{
-							"key": "date",
-							"value": "1/1/1876",
-							"description": "Publication date",
-							"type": "text"
-						},
-						{
-							"key": "author",
-							"value": "Mark Twain",
-							"type": "text"
-						},
-						{
-							"key": "birthdate",
-							"value": "11/30/1835",
-							"description": "Author's birthdate",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Huckleberry Finn\",\n    \"date\": \"4/3/1875\",\n    \"name\": \"Mark Twain\",\n    \"birthday\": \"11/30/1835\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/api/Book",
@@ -106,43 +90,27 @@
 			"name": "ReplaceBook",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "title",
-							"value": "Oliver Twist",
-							"type": "text"
-						},
-						{
-							"key": "date",
-							"value": "1/1/1839",
-							"description": "Publication date",
-							"type": "text"
-						},
-						{
-							"key": "author",
-							"value": "Charles Dickens",
-							"type": "text"
-						},
-						{
-							"key": "birthdate",
-							"value": "6/8/1870",
-							"description": "Author's birthdate",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Oliver Twist\",\n    \"date\": \"3/1/1839\",\n    \"name\": \"Charles Dickens\",\n    \"birthday\": \"6/8/1870\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/api/Book/5",
+					"raw": "http://localhost:5000/Api/Book/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
-						"api",
+						"Api",
 						"Book",
 						"5"
 					]
@@ -176,26 +144,17 @@
 			"name": "UpdateBook",
 			"request": {
 				"method": "PATCH",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "op",
-							"value": "replace",
-							"type": "text"
-						},
-						{
-							"key": "path",
-							"value": "title",
-							"type": "text"
-						},
-						{
-							"key": "value",
-							"value": "David Copperfield",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\n    \"op\": \"replace\",\n    \"path\": \"title\",\n    \"value\": \"David Copperfield\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/api/Book/5",
