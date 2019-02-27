@@ -97,7 +97,7 @@ function fillSelectList() {
     var sel = document.getElementsByTagName('select')[0];
     for (var i in books) {
         var opt = document.createElement("option");
-        opt.setAttribute("value", books[i].id);
+        opt.setAttribute("value", books[i].bookID);
         opt.innerHTML = books[i].title;
         sel.appendChild(opt);
     }
@@ -128,19 +128,37 @@ function getBookById(event) {
 function fillForm() {
     var book = JSON.parse(this.responseText);
     var inputs = document.getElementsByTagName("input");
-    inputs[0].value = book.id;
+    inputs[0].value = book.bookID;
     inputs[1].value = book.title;
     inputs[2].value = book.date.substr(0, 10); // just the date, not the time
     inputs[3].value = book.authors[0].name;
+    inputs[4].value = book.authors[0].birthday.substr(0, 10); // just the date, not the time
+
 }
 
 // Send new data for an existing book to the database
 function updateBook() {
     var data = getFormData();
 
+    // create an HTTP PATCH request
+    var xhr = new XMLHttpRequest();
+    xhr.open("PATCH", BOOK_URL + "/" + data.bookID, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onerror = errorHandler;
+
+    // serialize the data to a string so it can be sent
+    var dataString = JSON.stringify(data);
+    xhr.send(dataString);
+    clearSelectList();
+}
+
+// Send new data for an existing book to the database
+function replaceBook() {
+    var data = getFormData();
+
     // create an HTTP PUT request
     var xhr = new XMLHttpRequest();
-    xhr.open("PUT", BOOK_URL + "/" + data.id, true);
+    xhr.open("PUT", BOOK_URL + "/" + data.bookID, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onerror = errorHandler;
 
@@ -158,7 +176,7 @@ function updateBook() {
 function deleteBook() {
     var data = getFormData();
     var xhr = new XMLHttpRequest();
-    xhr.open("DELETE", BOOK_URL + "/" + data.id, true);
+    xhr.open("DELETE", BOOK_URL + "/" + data.bookID, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onerror = errorHandler;
     xhr.onreadystatechange = function() {
