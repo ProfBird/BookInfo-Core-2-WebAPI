@@ -21,11 +21,12 @@ namespace BookInfo.Controllers
 
         /* Action Methods */
 
-       [HttpGet]
+        [HttpGet]
         public IActionResult GetBooks()
         {
             var books = bookRepo.GetAllBooks();
-            if (books.Count == 0) {
+            if (books.Count == 0)
+            {
                 return NotFound();
             }
             else
@@ -36,10 +37,10 @@ namespace BookInfo.Controllers
 
         [HttpGet("{id}")]
         public IActionResult GetBook(int id)
-        { 
+        {
             var book = bookRepo.GetBookById(id);
             if (book == null)
-            { 
+            {
                 return NotFound();
             }
             else
@@ -49,12 +50,12 @@ namespace BookInfo.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBook(string title, string date, string author, string birthdate)
+        public IActionResult AddBook([FromBody]BookViewModel bookVm)
         {
-            Book book = new Book { Title = title, Date = DateTime.Parse(date) };
-            if (author != null)
+            if (bookVm != null)
             {
-                book.Authors.Add(new Author { Name = author, Birthday = DateTime.Parse(birthdate)});
+                Book book = new Book { Title = bookVm.Title, Date = DateTime.Parse(bookVm.Date) };
+                book.Authors.Add(new Author { Name = bookVm.Name, Birthday = DateTime.Parse(bookVm.Birthdate) });
                 bookRepo.AddBook(book);
                 return Ok(book);
             }
@@ -90,10 +91,10 @@ namespace BookInfo.Controllers
             // TODO: Add support for more ops: remove, copy, move, test
 
             Book book = bookRepo.GetBookById(id);
-            switch(path)
+            switch (path)
             {
                 case "title":
-                book.Title = value;
+                    book.Title = value;
                     break;
                 case "date":
                     book.Date = Convert.ToDateTime(value);
@@ -105,7 +106,7 @@ namespace BookInfo.Controllers
                     book.Authors[0].Birthday = Convert.ToDateTime(value);
                     break;
                 default:
-                    return BadRequest(); 
+                    return BadRequest();
             }
             bookRepo.Edit(book);
             return Ok(book);

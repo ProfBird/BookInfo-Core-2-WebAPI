@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="BookClient.js"></script>
+    <script>
+        // set up event handlers for this page
+        function init() {
+            // set up the event handler for posting book data
+            var form = document.getElementById("bookForm");
+            form.onsubmit = function(e) {
+                // prevent the form from sending an HTTP request when it is submitted
+                e.preventDefault();
+                addBook();
+            };
+            // Fill the table on the page with book data when the page opens
+            getAllBooks(fillTable);
+        }
+    </script>
+    <title>BookInfo API Client</title>
+</head>
+
+<body onload="init()">
+
+    <h1>BookInfo Web Service Client</h1>
+
+    <nav>
+        <a href="#addBook">Add a book to the database</a><br>
+        <a href="Update.html">Edit a book already in the database</a><br>
+    </nav>
+
+    <h2>List of all Books</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <section id="addBook">
+        <h2>Add a Book</h2>
+        <form id="bookForm">
+            <label for="title">Title</label>
+            <input name="title" placeholder="My Book">
+            <br>
+            <label for="date">Date</label>
+            <input name="date" placeholder="12/31/1999">
+            <br>
+            <label for="name">Author</label>
+            <input name="name" placeholder="Author">
+            <br>
+            <label for="birthdate">Birth Date</label>
+            <input name="birthdate" placeholder="1/1/1900y">
+            <br><br>
+            <button>Add Book</button>
+        </form>
+    </section>
+</body>
+
+</html>
