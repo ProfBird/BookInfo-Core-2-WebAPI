@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookInfo.Controllers
 {
+    // TODO: Convert this to an API Controller
+    
     public class AuthorController : Controller
     {
         private IAuthorRepository authorRepo;

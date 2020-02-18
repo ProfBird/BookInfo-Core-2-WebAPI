@@ -20,7 +20,7 @@ namespace BookInfo
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc();  // In 3.1, this can be AddControllers() to reduce framework overhead
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -42,7 +42,7 @@ namespace BookInfo
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseMvcWithDefaultRoute();
+            app.UseMvcWithDefaultRoute();  // In 3.1 replace this with UseRouting and UseEndpoints
             app.UseDefaultFiles();
             app.UseStaticFiles();
         }

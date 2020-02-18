@@ -7,10 +7,9 @@ using System.Collections.Generic;
 
 namespace BookInfo.Controllers
 {
-    // This class will be instantiated by the MVC framework or by a unit test
-
+    [ApiController]
     [Route("Api/[controller]")]
-    public class BookController : Controller
+    public class BookController : ControllerBase // ControllerBase doesn't include view support so it's apropos for WebAPIs
     {
         private IBookRepository bookRepo;
 
@@ -35,8 +34,9 @@ namespace BookInfo.Controllers
             }
         }
 
+        // Api/Book -- default request
         [HttpGet("{id}")]
-        public IActionResult GetBook(int id)
+        public IActionResult GetBook(int id)    
         {
             var book = bookRepo.GetBookById(id);
             if (book == null)
