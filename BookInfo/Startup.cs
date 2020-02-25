@@ -42,7 +42,10 @@ namespace BookInfo
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseMvcWithDefaultRoute();  // In 3.1 replace this with UseRouting and UseEndpoints
+           app.UseMvc();
+           /* We aren't using app.UseMvcWithDefaultRoute() because it defines a default route with the template: '{controller=Home}/{action=Index}/{id?}'
+              but, we no longer have a Home controller, instead we have an Index.html page in wwwroot. */
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
         }

@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+
 
 namespace BookInfo.Models
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
@@ -16,7 +11,7 @@ namespace BookInfo.Models
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Review> Reviews { get; set; }
-
+        /*
         public static async Task CreateAdminAccount(IServiceProvider serviceProvider, IConfiguration configuration)
         {
             UserManager<AppUser> userManager =
@@ -45,6 +40,7 @@ namespace BookInfo.Models
                     await userManager.AddToRoleAsync(user, role);
                 }
             }
-        }
+            
+        }*/
     }
 }

@@ -10,7 +10,6 @@ namespace BookInfo
         public static void Initialize(IServiceProvider services)
         {
             ApplicationDbContext context = services.GetRequiredService<ApplicationDbContext>();
-            context.Database.EnsureCreated();
             if (!context.Books.Any())
             {
                 Book book = new Book { Title = "Lord of the Rings", Date = DateTime.Parse("1/1/1937") }; // month/day/year
