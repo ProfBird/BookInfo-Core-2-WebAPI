@@ -5,13 +5,13 @@
 /************* Get all books from the API ************/
 /***********************************************************/
 
-// This function is called by other functions that pass in the onloadHander
-function getAllBooks(onloadHandler) {
+// This function is called by other functions that pass in the onloadHander function
+function getAllBooks(onloadHandler) {  
     var xhr = new XMLHttpRequest();
-    xhr.onload = onloadHandler;
+    xhr.onload = onloadHandler;        // Called when the request that was sent has comleted successfully
     xhr.onerror = errorHandler;
-    xhr.open("GET", BOOK_URL, true);
-    xhr.send();
+    xhr.open("GET", BOOK_URL, true);   // Defines and initializes the request
+    xhr.send();                        // Sends the request
 }
 
 // Loop through the books and put them in the table
@@ -75,16 +75,19 @@ function addBook() {
     xhr.open("POST", BOOK_URL, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onerror = errorHandler;
-    xhr.onreadystatechange = function() {
-        // if readyState is "done" and status is "success"
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            addRow(JSON.parse(xhr.responseText));
-        }
-    };
+
+    xhr.onload = function () {
+        // Called when the request completes successfully.
+        // Will parse the JSON data that was sent and put it in a table row.
+        var book = JSON.parse(this.responseText);
+        addRow(book);
+     }
     // serialize the data to a string so it can be sent
     var dataString = JSON.stringify(data);
     xhr.send(dataString);
 }
+
+
 
 /***********************************************************/
 /********* Update a book already in the database **********/
@@ -126,7 +129,7 @@ function getBookById(event) {
 // puts data from existing book into the form 
 // called back by getBookById
 function fillForm() {
-    var book = JSON.parse(this.responseText);
+    var book = JSON.parse(this.responseText);  // this is the XHR object and it contains the HTTP response with a collection of book objects
     var inputs = document.getElementsByTagName("input");
     inputs[0].value = book.bookID;
     inputs[1].value = book.title;
@@ -184,7 +187,8 @@ function deleteBook() {
     xhr.open("DELETE", BOOK_URL + "/" + data.bookID, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onerror = errorHandler;
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
+        // This function is called when the state of the request changes. See https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
         // if readyState is "done" and status is "success"
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 204) {
             clearSelectList();

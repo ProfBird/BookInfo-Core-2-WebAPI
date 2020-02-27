@@ -8,7 +8,7 @@ namespace BookInfo.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
-    public class BookController : ControllerBase // ControllerBase doesn't include view support so it's apropos for WebAPIs
+    public class BookController : ControllerBase // ControllerBase doesn't include View support so it's apropos for WebAPIs
     {
         private IBookRepository bookRepo;
 
